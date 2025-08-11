@@ -20,6 +20,9 @@ public class main {
         System.out.println("Somatório de array [1, 2, 3, 4, 5]: "+somatorioArray(new int[]{1, 2, 3, 4, 5}, 5));
         System.out.println("Maior valor do array [1, 2, 3, 4, 5]: "+findBiggest(new ArrayList<>(java.util.Arrays.asList(1, 2, 3, 4, 5))));
         System.out.println("Substr 'hello' em 'hello world': "+findSubStr("hello world", "hello"));
+        System.out.println("Inversão de 'hello': "+inversao("hello"));
+        System.out.println("Número de dígitos de 12345: "+nroDigit(12345));
+        System.out.println("Permutações de 'abc': "+permutations("abc"));
 
     }
     public static int mutiplicacao(int x, int y){   
@@ -42,8 +45,10 @@ public class main {
         return 1/x + calculo(x-1);
     }
     public static String inversao(String n){
-        
-        return inversao(n);
+        if (n == null || n.length() <= 1) {
+            return n;
+        }
+        return inversao(n.substring(1)) + n.charAt(0);
     }
       public static int fatorial(int n){
         if (n == 0 || n == 1) {
@@ -118,5 +123,32 @@ public static boolean findSubStr(String str, String match){
     }
     return findSubStr(str.substring(1), match);
 }
+
+    public static int nroDigit(int n) {
+    if (n < 0) {
+        n = -n;
+    }
+    if (n < 10) {
+        return 1;
+    }
+    return 1 + nroDigit(n / 10);
+    }
+
+    public static ArrayList<String> permutations(String s) {
+        ArrayList<String> resultado = new ArrayList<>();
+        if (s.length() == 0) {
+            resultado.add("");
+            return resultado;
+        }
+
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            String resto = s.substring(0, i) + s.substring(i + 1);
+            for (String p : permutations(resto)) {
+                resultado.add(c + p);
+            }
+        }
+        return resultado;
+    }
 
 }
