@@ -19,7 +19,7 @@ public class main {
         System.out.println("Conversao de 2 para base 2: "+convBase2(2));
         System.out.println("Somatório de array [1, 2, 3, 4, 5]: "+somatorioArray(new int[]{1, 2, 3, 4, 5}, 5));
         System.out.println("Maior valor do array [1, 2, 3, 4, 5]: "+findBiggest(new ArrayList<>(java.util.Arrays.asList(1, 2, 3, 4, 5))));
-        //System.out.println("Substr 'hello' em 'hello world': "+findSubStr("hello world", "hello"));
+        System.out.println("Substr 'hello' em 'hello world': "+findSubStr("hello world", "hello"));
 
     }
     public static int mutiplicacao(int x, int y){   
@@ -109,14 +109,14 @@ public static int findBiggest(ArrayList<Integer> ar) {
     int anterior= ar.remove(ar.size()-1);
     return Math.max(anterior, findBiggest(ar));
 }
-// public static boolean findSubStr(String str, String match){
-//     if(str.length()<match.length()){
-//         return false;
-//     }
-//     if(str.substring(match.length(), str.length()).equals(match)){
-//         return true;
-//     }
-//     return findSubStr(str.substring(1, str.length()), match.charAt(match.length()+1));
-// }
+public static boolean findSubStr(String str, String match){
+    if (str.length() < match.length()) {
+        return false;
+    }
+    if (str.substring(0, match.length()).equals(match)) {
+        return true;
+    }
+    return findSubStr(str.substring(1), match);
+}
 
 }
